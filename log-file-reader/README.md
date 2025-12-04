@@ -1,109 +1,112 @@
-# 📄 Log File Reader (Python)
+# Log File Parser
 
-This project reads a log file and prints **unique IP addresses with their occurrence count** from a **given date or date range**.  
-Just enter the start and end date — the program filters the log file and shows all matching IPs.
+A simple Python-based utility that reads an unsorted log file, filters the entries based on a given date range, and counts occurrences of each IP address.
+
+This project helps understand:
+
+* File handling
+* Date parsing using `datetime`
+* Basic log analysis
+* Dictionary-based frequency counting
+* Exception handling
+* Measuring execution time
 
 ---
 
 ## 🚀 Features
 
-- Search by **single date** or **date range**
-- Extract IP addresses from matching lines
-- Count occurrences of each IP
-- Display unique IPs only
-- Handles:
-  - Missing file
-  - Wrong date format
-  - No data found
+* Filter log entries between **start date** and **end date**.
+* Count how many times each **IP address** appears.
+* Handle invalid formats gracefully.
+* Display execution time for performance insight.
 
 ---
 
-## 📝 How It Works
+## 📂 Log Format Example
 
-1. User enters:
-Enter start date (YYYY-MM-DD):
-Enter end date (YYYY-MM-DD):
+Each log entry should start with a date in the format:
 
-2. The script opens the log file line-by-line  
-3. For each log line:
-- Extracts **date**  
-- Checks if date is within range  
-- Extracts the **IP address**  
-4. Maintains a dictionary of IP counts  
-5. Finally prints:
+```
+YYYY-MM-DD ... ... ... IP
+```
 
-IP: 192.168.0.1: 3
-IP: 103.22.123.11: 1
+Example:
 
----
-
-## 📌 Log File Format (Expected)
-
-Each line must begin with a date in this format:
-
-YYYY-MM-DD HH:MM:SS METHOD IP OTHER_DATA
-
-Example from `sample_log_unsorted.txt`:
-
-2024-01-02 11:45:33 GET /home 192.168.0.1
-2024-01-03 10:12:20 POST /login 103.22.123.11
-
-The script extracts:
-
-- **Date** → first word  
-- **IP** → 5th element in the line (`line.split(" ")[4]`)
+```
+2024-01-15 INFO User login success 192.168.1.10
+2024-01-17 ERROR Timeout 10.0.0.5
+2024-02-01 INFO Logout 192.168.1.10
+```
 
 ---
 
-## ▶️ How to Run
+## 🧪 Sample Input
 
-Run the script with:
+```
+Enter start date (YYYY-MM-DD): 2024-01-10
+Enter end date (YYYY-MM-DD): 2024-01-31
+```
 
-```bash
-python LogReader.py
+### Output Example:
 
+```
+IP: 192.168.1.10: 1
+IP: 10.0.0.5: 1
+Time taken: 0.0032 seconds
+```
 
-Make sure the log file name matches:
-file_path = "sample_log_unsorted.txt"
+---
 
+## 📜 How to Run
 
-📤 Example Output
+### Prerequisites
 
+* Python 3.8+
 
-Enter start date (YYYY-MM-DD): 2024-01-02
-Enter end date (YYYY-MM-DD): 2024-01-03
+### Steps
 
-IP: 192.168.0.1: 2
-IP: 103.22.123.11: 1
+```
+python main.py
+```
 
-Time taken: 0.00097 seconds
+Enter required date ranges when prompted.
 
+---
 
-⚠️ Error Handling
-❌ Wrong date format →
-"time data 'abc' does not match format '%Y-%m-%d'"
+## 🗂 File Structure
 
-❌ Invalid or no data found →
-"Invalid format or no data found.."
+```
+log-file-parser/
+│── main.py
+│── sample_log_unsorted.txt
+│── README.md
+```
 
-❌ Wrong file path →
-"Log file not found"
+---
 
-📦 Requirements
-Python 3.x
+## ⚠️ Notes
 
-No external libraries needed
+* Ensure your log file contains valid date format `YYYY-MM-DD` at the start of each line.
+* Replace `sample_log_unsorted.txt` with your actual log file if needed.
 
-✨ Future Improvements
-Range search via command-line flags (--start, --end)
+---
 
-Export output to CSV
+## 💡 Future Enhancements
 
-Add IP blacklist filtering
+* Export IP counts to CSV.
+* Add support for different log formats.
+* Add CLI arguments instead of interactive input.
 
-Add colored terminal output
+---
 
-🤝 Contributing
-Pull requests are welcome.
-If you want to add features or fix bugs, feel free to open an issue.
+## 📄 License
 
+MIT License
+
+---
+
+## 👨‍💻 Author
+
+Created by **Milli Srivastava** 
+
+Feel free to contribute or suggest improvements!
