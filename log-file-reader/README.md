@@ -61,6 +61,8 @@ Run the script with:
 
 ```bash
 python LogReader.py
+
+
 Make sure the log file name matches:
 file_path = "sample_log_unsorted.txt"
 
